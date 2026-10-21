@@ -1,0 +1,228 @@
+/* тема «Квитанция»: светлая, «чистая», записи оформлены как квитанции */
+:root {
+    --bg: #eaf5f8;        /* фон страницы */
+    --surface: #ffffff;   /* квитанции */
+    --ink: #17364d;       /* основной текст */
+    --muted: #5d7d90;     /* второстепенный текст */
+    --aqua: #1596b8;      /* голубой акцент */
+    --mint: #d3f0e8;      /* мятные «плашки» */
+    --line: #c5dde6;      /* пунктир и разделители */
+}
+
+/* общие стили страниц */
+body {
+    margin: 0;
+    background-color: var(--bg);
+    /* «пузырьки» на фоне */
+    background-image:
+        radial-gradient(circle at 93% 22%, #d9eef4 0, #d9eef4 120px, transparent 121px),
+        radial-gradient(circle at 5% 70%, #dcf3ec 0, #dcf3ec 90px, transparent 91px);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+}
+
+.header {
+    position: relative;
+    width: 960px;
+    margin: 30px auto 24px auto;
+    min-height: 48px;
+}
+
+/* логотип по центру (страница архива) */
+.header img {
+    display: block;
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.archive {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+
+/* запись в списке - квитанция */
+.one-post {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 22px 32px;
+    background: var(--surface);
+    border-radius: 18px;
+    box-shadow: 0 8px 22px rgba(23, 54, 77, 0.09);
+}
+
+/* круглые «просечки» по бокам квитанции */
+.one-post::before, .one-post::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 18px;
+    height: 18px;
+    margin-top: -9px;
+    border-radius: 50%;
+    background: var(--bg);
+}
+
+.one-post::before {
+    left: -9px;
+}
+
+.one-post::after {
+    right: -9px;
+}
+
+.post-title {
+    margin: 0 0 10px 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 23px;
+    font-weight: normal;
+}
+
+.post-title a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.post-title a:hover {
+    color: var(--aqua);
+}
+
+.article-info {
+    overflow: hidden;
+}
+
+.article-author {
+    width: 50%;
+    float: left;
+    font-weight: bold;
+}
+
+/* дата приема - мятная «плашка» справа */
+.article-created-date {
+    float: right;
+    text-align: right;
+    padding: 3px 12px;
+    background: var(--mint);
+    border-radius: 12px;
+    font-size: 14px;
+}
+
+/* пунктирная линия отрыва, под ней - услуга и сумма */
+.article-details {
+    clear: both;
+    margin: 14px 0 0 0;
+    padding-top: 12px;
+    border-top: 2px dashed var(--line);
+    color: var(--aqua);
+    font-weight: bold;
+}
+
+.article-text {
+    margin: 8px 0 0 0;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+/* ссылки в правом верхнем углу шапки */
+.header-links {
+    position: absolute;
+    top: 14px;
+    right: 0;
+}
+
+.all-posts {
+    margin-left: 8px;
+    padding: 8px 16px;
+    background: var(--surface);
+    border-radius: 18px;
+    box-shadow: 0 2px 8px rgba(23, 54, 77, 0.08);
+    color: var(--aqua);
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.all-posts:hover {
+    background: var(--aqua);
+    color: #ffffff;
+}
+
+/* стили страницы одной записи */
+.article .header img {
+    margin-left: 0;
+}
+
+.article .content {
+    box-sizing: border-box;
+    width: 960px;
+    margin: 0 auto 40px auto;
+    padding: 30px 36px;
+    background: var(--surface);
+    border-radius: 18px;
+    box-shadow: 0 8px 22px rgba(23, 54, 77, 0.09);
+}
+
+.article h1 {
+    margin: 0 0 14px 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: normal;
+}
+
+.article .article-info {
+    margin-bottom: 6px;
+    padding-bottom: 14px;
+    border-bottom: 2px dashed var(--line);
+}
+
+.article .article-details {
+    margin: 0;
+    padding: 9px 0;
+    border-top: none;
+    border-bottom: 1px solid #e6f0f4;
+    color: var(--ink);
+    font-weight: normal;
+}
+
+.article .article-text {
+    margin-top: 16px;
+}
+
+/* кнопка «свернуть» / «развернуть» */
+.fold-button {
+    float: right;
+    margin-top: 2px;
+    padding: 5px 14px;
+    background: var(--mint);
+    border: none;
+    border-radius: 14px;
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.fold-button:hover {
+    background: var(--aqua);
+    color: #ffffff;
+}
+
+/* данные стили применяются только к элементам, у которых родитель
+   с классом one-post имеет также класс folded */
+.one-post.folded .article-author {
+    display: none;
+}
+
+.one-post.folded .article-created-date,
+.one-post.folded .article-details,
+.one-post.folded .article-text {
+    display: none;
+}
+
+.one-post.folded .post-title {
+    margin-bottom: 0;
+}

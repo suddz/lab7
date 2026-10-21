@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{ post.item }} (договор № {{ post.contract }})</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+</head>
+<body class="article">
+    <div class="header">
+        <img src="{% static 'img/logo.png' %}" />
+        <div class="header-links">
+            <a class="all-posts" href="{% url 'archive' %}">Все заказы</a>
+            <a class="all-posts" href="{% url 'register' %}">Регистрация</a>
+            <a class="all-posts" href="{% url 'login' %}">Вход</a>
+        </div>
+    </div>
+    <div class="content">
+        <h1>{{ post.item }} (договор № {{ post.contract }})</h1>
+        <div class="article-info">
+            <div class="article-author">Клиент: {{ post.client }}</div>
+            <div class="article-created-date">{{ post.receive_date }}</div>
+        </div>
+        <p class="article-details">Телефон: {{ post.phone }}</p>
+        <p class="article-details">Филиал: {{ post.branch }}</p>
+        <p class="article-details">Вид услуги: {{ post.service }}</p>
+        <p class="article-details">Стоимость услуги: {{ post.price }} руб.</p>
+        <p class="article-details">Надбавка за срочность: {{ post.urgency }} %, за сложность: {{ post.complexity }} %</p>
+        <p class="article-details">Скидка постоянного клиента: {{ post.discount }} %</p>
+        <p class="article-details">Дата возврата: {{ post.return_date }}</p>
+        <p class="article-details">К оплате: {{ post.get_cost }} руб.</p>
+        <p class="article-text">{{ post.text }}</p>
+    </div>
+</body>
+</html>
